@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mihir & Maitri - Wedding Adventure</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #F7F7F7; }
+        .card { background-color: white; border-radius: 1rem; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05); }
+        .btn-primary { background-color: #118AB2; color: white; transition: background-color 0.3s; }
+        .btn-primary:hover { background-color: #073B4C; }
+        .input-style { border: 1px solid #FFD166; padding: 0.75rem; border-radius: 0.5rem; width: 100%; }
+    </style>
+    <!-- Chosen Palette: Energetic & Playful -->
+</head>
+<body class="text-[#073B4C]">
+
+    <div id="loading-overlay" class="fixed inset-0 bg-white bg-opacity-75 z-50 flex items-center justify-center">
+        <div class="flex flex-col items-center">
+            <div class="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-[#118AB2]"></div>
+            <p class="mt-4 text-lg font-semibold text-[#118AB2]">Initializing the Adventure...</p>
+        </div>
+    </div>
+
+    <div id="app" class="container mx-auto p-4 md:p-8 max-w-4xl opacity-0 transition-opacity duration-500">
+        <header class="text-center py-12 bg-[#06D6A0] card mb-8">
+            <p class="text-lg font-semibold text-white">You're Invited To</p>
+            <h1 class="text-6xl md:text-8xl font-black text-white leading-none tracking-tight">M & M</h1>
+            <h2 class="text-2xl md:text-4xl font-extrabold text-[#073B4C] mt-2">Mihir & Maitri</h2>
+        </header>
+
+        <section class="text-center mb-12">
+            <p class="text-xl md:text-2xl font-semibold mb-2 text-[#FF6B6B]">Our Greatest Adventure Starts</p>
+            <p class="text-4xl md:text-5xl font-extrabold text-[#118AB2]">November 30, 2025</p>
+            <p class="text-lg md:text-xl font-medium mt-1">Kullu, Himachal Pradesh</p>
+        </section>
+
+        <section class="card p-6 mb-12">
+            <h3 class="text-3xl font-bold mb-4 text-[#118AB2] border-b-2 border-[#FFD166] pb-2">The 9-Day Journey</h3>
+            <p class="mb-6 text-gray-600">This isn't just a wedding; it's a multi-city adventure for our closest family and friends. We've organized the entire logistics so you can focus on the fun!</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                <div class="p-4 bg-blue-50 rounded-lg">
+                    <p class="text-xl font-bold text-[#118AB2]">Nov 27th</p>
+                    <p class="text-sm mt-1">Assemble in Delhi & Board the Baraat Bus</p>
+                </div>
+                <div class="p-4 bg-red-50 rounded-lg">
+                    <p class="text-xl font-bold text-[#FF6B6B]">Nov 30th</p>
+                    <p class="text-sm mt-1">Wedding Ceremony in Serene Kullu</p>
+                </div>
+                <div class="p-4 bg-green-50 rounded-lg">
+                    <p class="text-xl font-bold text-[#06D6A0]">Dec 5th</p>
+                    <p class="text-sm mt-1">Grand Reception in Muzaffarpur</p>
+                </div>
+            </div>
+            <p class="mt-4 text-sm text-center text-gray-500">Full detailed itinerary is available upon RSVP.</p>
+        </section>
+
+        <section class="card p-6 mb-12" id="rsvp-section">
+            <h3 class="text-3xl font-bold mb-6 text-[#118AB2] border-b-2 border-[#FFD166] pb-2">Confirm Your Spot!</h3>
+            <p class="mb-6 text-gray-600">Please let us know your plans so we can ensure your travel and accommodation are perfectly arranged.</p>
+
+            <form id="rsvp-form" class="space-y-4">
+                <div>
+                    <label for="name" class="block text-sm font-medium mb-1">Your Full Name(s)</label>
+                    <input type="text" id="name" required class="input-style" placeholder="e.g., John & Jane Doe">
+                </div>
+
+                <div>
+                    <label for="attending" class="block text-sm font-medium mb-1">Will you be able to attend the events?</label>
+                    <select id="attending" required class="input-style bg-white">
+                        <option value="">-- Select Option --</option>
+                        <option value="Yes - Attending All">Yes, Attending All Events</option>
+                        <option value="Yes - Attending Reception Only">Yes, Attending Reception ONLY (Dec 5th)</option>
+                        <option value="No">Regretfully, Cannot Attend</option>
+                    </select>
+                </div>
+
+                <div id="travel-status-group">
+                    <label for="traveling" class="block text-sm font-medium mb-1">Will you require travel/accommodation with the Baraat (Delhi to Kullu)?</label>
+                    <select id="traveling" required class="input-style bg-white">
+                        <option value="">-- Select Option --</option>
+                        <option value="Yes - Traveling with Baraat">Yes, traveling with the Baraat group</option>
+                        <option value="No - Self Arranged">No, I will make my own travel arrangements</option>
+                    </select>
+                    <p class="text-xs text-gray-500 mt-1">Selecting 'Yes' means we will coordinate your journey and stay from Delhi assembly.</p>
+                </div>
+
+                <div>
+                    <label for="message" class="block text-sm font-medium mb-1">A Quick Message or Note (Optional)</label>
+                    <textarea id="message" rows="3" class="input-style" placeholder="Send us your blessings or a song request!"></textarea>
+                </div>
+
+                <button type="submit" id="submit-button" class="btn-primary w-full py-3 text-lg font-bold rounded-lg mt-4 flex items-center justify-center">
+                    <span id="submit-text">Send RSVP</span>
+                    <svg id="loading-spinner" class="animate-spin h-5 w-5 text-white ml-2 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                </button>
+            </form>
+
+            <div id="message-box" class="mt-4 p-4 rounded-lg hidden text-center font-semibold"></div>
+        </section>
+
+        <footer class="text-center py-6 border-t border-gray-300">
+            <p class="text-sm text-[#FF6B6B] font-bold mb-2">#MihirWedsMaitri</p>
+            <p class="text-xs text-gray-500">Your Session ID: <span id="user-id-display" class="font-mono text-xs text-[#118AB2]">Loading...</span></p>
+            <p class="text-xs text-gray-500">Data secured by Firebase Firestore.</p>
+        </footer>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, collection, getDocs, query, where, limit, runTransaction } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Global variables provided by the environment
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : null;
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+
+        let db, auth, userId = null;
+        
+        const appElement = document.getElementById('app');
+        const loadingOverlay = document.getElementById('loading-overlay');
+        const userIdDisplay = document.getElementById('user-id-display');
+        const rsvpForm = document.getElementById('rsvp-form');
+        const submitButton = document.getElementById('submit-button');
+        const submitText = document.getElementById('submit-text');
+        const loadingSpinner = document.getElementById('loading-spinner');
+        const messageBox = document.getElementById('message-box');
+
+        // Helper to display messages (no alert() allowed)
+        const displayMessage = (message, isSuccess = true) => {
+            messageBox.textContent = message;
+            messageBox.className = `mt-4 p-4 rounded-lg text-center font-semibold ${isSuccess ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`;
+            messageBox.style.display = 'block';
+        };
+
+        const setButtonLoading = (isLoading) => {
+            submitButton.disabled = isLoading;
+            loadingSpinner.classList.toggle('hidden', !isLoading);
+            submitText.textContent = isLoading ? 'Sending...' : 'Send RSVP';
+        };
+
+        const initializeFirebase = async () => {
+            if (!firebaseConfig) {
+                console.error("Firebase config is missing.");
+                displayMessage("Configuration error. Cannot submit RSVP.", false);
+                return;
+            }
+
+            try {
+                const firebaseApp = initializeApp(firebaseConfig);
+                db = getFirestore(firebaseApp);
+                auth = getAuth(firebaseApp);
+                
+                if (initialAuthToken) {
+                    await signInWithCustomToken(auth, initialAuthToken);
+                } else {
+                    await signInAnonymously(auth);
+                }
+
+                onAuthStateChanged(auth, (user) => {
+                    if (user) {
+                        userId = user.uid;
+                        userIdDisplay.textContent = userId;
+                    } else {
+                        userId = crypto.randomUUID(); // Fallback ID if auth fails
+                        userIdDisplay.textContent = 'Anon-' + userId.substring(0, 8);
+                        displayMessage("Signed in anonymously. Data access might be restricted.", false);
+                    }
+                    loadingOverlay.classList.add('hidden');
+                    appElement.classList.remove('opacity-0');
+                });
+            } catch (error) {
+                console.error("Firebase initialization or authentication error:", error);
+                displayMessage(`Auth failed: ${error.code}. Cannot submit RSVP.`, false);
+                loadingOverlay.classList.add('hidden');
+                appElement.classList.remove('opacity-0');
+            }
+        };
+
+        const handleRsvpSubmit = async (e) => {
+            e.preventDefault();
+            if (!db || !userId) {
+                displayMessage("App not initialized. Please wait or refresh.", false);
+                return;
+            }
+
+            setButtonLoading(true);
+            messageBox.style.display = 'none';
+
+            const rsvpData = {
+                name: document.getElementById('name').value.trim(),
+                attending: document.getElementById('attending').value,
+                traveling: document.getElementById('traveling').value,
+                message: document.getElementById('message').value.trim(),
+                timestamp: new Date(),
+                userId: userId,
+                // Using the specific private path structure
+                appId: appId 
+            };
+            
+            // Construct the path for private user data
+            const docPath = `/artifacts/${appId}/users/${userId}/rsvps/${userId}`;
+
+            try {
+                // Use setDoc to overwrite or create a single document per user/session for their RSVP
+                await setDoc(doc(db, docPath), rsvpData);
+
+                displayMessage(`RSVP received! Thank you, ${rsvpData.name.split(' ')[0]}!`, true);
+                rsvpForm.reset();
+                document.getElementById('traveling').required = true; // Reset requirement
+            } catch (error) {
+                console.error("Error submitting RSVP:", error);
+                displayMessage("Error: Failed to submit RSVP. Please check your connection.", false);
+            } finally {
+                setButtonLoading(false);
+            }
+        };
+
+        // Attach event listeners after initialization
+        rsvpForm.addEventListener('submit', handleRsvpSubmit);
+
+        // Conditional Requirement for Travel Status
+        document.getElementById('attending').addEventListener('change', (e) => {
+            const travelingSelect = document.getElementById('traveling');
+            const travelGroup = document.getElementById('travel-status-group');
+
+            if (e.target.value.startsWith('Yes')) {
+                travelGroup.classList.remove('hidden');
+                travelingSelect.required = true;
+            } else {
+                travelGroup.classList.add('hidden');
+                travelingSelect.required = false;
+            }
+        });
+
+        initializeFirebase();
+    </script>
+</body>
+</html>
